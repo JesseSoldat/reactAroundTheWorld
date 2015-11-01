@@ -40,14 +40,32 @@ export default React.createClass({
   
   render() { 
     return (
+     <div className="detailWrapper"> 
       <div className="nav">
-      <ul>
-      <li onClick={() => this.returnHome()}><h2>Hello World</h2></li>
-      <li onClick={() => this.addPic()}> <h2>New Image</h2></li>
-      <li><h2><a href="http://jessesoldatfirstsite.bitballoon.com/">My World</a></h2></li>
-      </ul>
-    </div>
+        <ul>
+        <li onClick={() => this.returnHome()}><h2>Hello World</h2></li>
+        <li onClick={() => this.addPic()}> <h2>New Image</h2></li>
+        <li><h2><a href="http://jessesoldatfirstsite.bitballoon.com/">My World</a></h2></li>
+        </ul>
+      </div>
+      <div className="singleContentWrapper">
+        <div className="singleImgWrapper">
+          <img className="singleImg" src={this.props.image.URL}/>
+        </div> 
+
+
+        <div className="detailInfo">
+          <h3>Name: {this.props.image.Name}</h3>
+          <h3>User: {this.props.image.User}</h3>
+          <h3>@ {this.props.image.Location}</h3>
+          <p>{this.props.image.Description}</p>
+        </div>
+
+      </div>   
+
+    </div>  
      
+
       ) //end of return
     
   } //end of render()

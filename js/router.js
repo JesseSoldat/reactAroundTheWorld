@@ -73,13 +73,30 @@ export default Backbone.Router.extend({
    }); //end of fetch
   }, //end of showHome()
 //-----------------------------------
-  showDetails(){
+  showDetails(id){
+    let imageClicked = this.collection.get(id);
+    
+   if (imageClicked) {
     this.render(
       <DetailsComponent
        onHome={() => this.goto('')}
-       onAdd={() => this.goto('add')}/>
+       onAdd={() => this.goto('add')}
+       image={imageClicked.toJSON()}/>
        );
-  }, //end of showDetails()
+    
+   }//if
+   else { 
+    imageClicked = this.collection.add({objectId: id});
+    imageClicked.fetch().then(() => {
+      this.render(<DetailsComponent
+       onHome={() => this.goto('')}
+       onAdd={() => this.goto('add')}
+       image={imageClicked.toJSON()}/>
+       );
+
+    });//fetch 
+    }//else
+  }, //showDetails()
 //-----------------------------------
   showEdit(){
     this.render(

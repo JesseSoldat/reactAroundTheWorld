@@ -225,17 +225,35 @@ exports['default'] = _backbone2['default'].Router.extend({
     }); //end of fetch
   }, //end of showHome()
   //-----------------------------------
-  showDetails: function showDetails() {
+  showDetails: function showDetails(id) {
     var _this2 = this;
 
-    this.render(_react2['default'].createElement(_views.DetailsComponent, {
-      onHome: function () {
-        return _this2.goto('');
-      },
-      onAdd: function () {
-        return _this2.goto('add');
-      } }));
-  }, //end of showDetails()
+    var imageClicked = this.collection.get(id);
+
+    if (imageClicked) {
+      this.render(_react2['default'].createElement(_views.DetailsComponent, {
+        onHome: function () {
+          return _this2.goto('');
+        },
+        onAdd: function () {
+          return _this2.goto('add');
+        },
+        image: imageClicked.toJSON() }));
+    } //if
+    else {
+        imageClicked = this.collection.add({ objectId: id });
+        imageClicked.fetch().then(function () {
+          _this2.render(_react2['default'].createElement(_views.DetailsComponent, {
+            onHome: function () {
+              return _this2.goto('');
+            },
+            onAdd: function () {
+              return _this2.goto('add');
+            },
+            image: imageClicked.toJSON() }));
+        }); //fetch
+      } //else
+  }, //showDetails()
   //-----------------------------------
   showEdit: function showEdit() {
     var _this3 = this;
@@ -431,44 +449,84 @@ exports['default'] = _react2['default'].createClass({
 
     return _react2['default'].createElement(
       'div',
-      { className: 'nav' },
+      { className: 'detailWrapper' },
       _react2['default'].createElement(
-        'ul',
-        null,
+        'div',
+        { className: 'nav' },
         _react2['default'].createElement(
-          'li',
-          { onClick: function () {
-              return _this.returnHome();
-            } },
-          _react2['default'].createElement(
-            'h2',
-            null,
-            'Hello World'
-          )
-        ),
-        _react2['default'].createElement(
-          'li',
-          { onClick: function () {
-              return _this.addPic();
-            } },
-          ' ',
-          _react2['default'].createElement(
-            'h2',
-            null,
-            'New Image'
-          )
-        ),
-        _react2['default'].createElement(
-          'li',
+          'ul',
           null,
           _react2['default'].createElement(
-            'h2',
+            'li',
+            { onClick: function () {
+                return _this.returnHome();
+              } },
+            _react2['default'].createElement(
+              'h2',
+              null,
+              'Hello World'
+            )
+          ),
+          _react2['default'].createElement(
+            'li',
+            { onClick: function () {
+                return _this.addPic();
+              } },
+            ' ',
+            _react2['default'].createElement(
+              'h2',
+              null,
+              'New Image'
+            )
+          ),
+          _react2['default'].createElement(
+            'li',
             null,
             _react2['default'].createElement(
-              'a',
-              { href: 'http://jessesoldatfirstsite.bitballoon.com/' },
-              'My World'
+              'h2',
+              null,
+              _react2['default'].createElement(
+                'a',
+                { href: 'http://jessesoldatfirstsite.bitballoon.com/' },
+                'My World'
+              )
             )
+          )
+        )
+      ),
+      _react2['default'].createElement(
+        'div',
+        { className: 'singleContentWrapper' },
+        _react2['default'].createElement(
+          'div',
+          { className: 'singleImgWrapper' },
+          _react2['default'].createElement('img', { className: 'singleImg', src: this.props.image.URL })
+        ),
+        _react2['default'].createElement(
+          'div',
+          { className: 'detailInfo' },
+          _react2['default'].createElement(
+            'h3',
+            null,
+            'Name: ',
+            this.props.image.Name
+          ),
+          _react2['default'].createElement(
+            'h3',
+            null,
+            'User: ',
+            this.props.image.User
+          ),
+          _react2['default'].createElement(
+            'h3',
+            null,
+            '@ ',
+            this.props.image.Location
+          ),
+          _react2['default'].createElement(
+            'p',
+            null,
+            this.props.image.Description
           )
         )
       )

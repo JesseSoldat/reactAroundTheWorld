@@ -59,8 +59,25 @@ a {
   .image {
     width: 100%;
     height: 100%;
-
-    
   }
  }//.imgWrapper 
 }//.homePictures
+.singleContentWrapper {
+
+  .singleImg {
+    float: left;
+    width: 600px;
+    border: 1px solid black;
+    border-radius: 2px;
+    margin: 30px;
+  }
+  .detailInfo {
+    float: left;
+    background-color: #E0BB0C;
+    width: 400px;
+    border: 1px solid black;
+    border-radius: 2px;
+    margin: 30px;
+    padding: 2%;
+  }
+}  //.singleContentWrapper  
