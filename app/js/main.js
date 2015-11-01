@@ -211,7 +211,17 @@ exports['default'] = _backbone2['default'].Router.extend({
       var data = _this.collection.toJSON();
       console.log(data);
 
-      _this.render(_react2['default'].createElement(_views.HomeComponent, null));
+      _this.render(_react2['default'].createElement(_views.HomeComponent, {
+        getData: data,
+        onHome: function () {
+          return _this.goto('');
+        },
+        onDetails: function () {
+          return _this.goto('details/' + id);
+        },
+        onAdd: function () {
+          return _this.goto('add');
+        } })); //end of render
     }); //end of fetch
   }, //end of showHome()
   //-----------------------------------
@@ -519,46 +529,70 @@ var _resources = require('../resources');
 exports['default'] = _react2['default'].createClass({
   displayName: 'home',
 
+  returnHome: function returnHome() {
+    console.log('returnHome');
+  },
+  addPic: function addPic() {
+    console.log('addPic');
+  },
+  formatData: function formatData(data) {
+    console.log(data);
+  },
+
   render: function render() {
+    var _this = this;
+
     return _react2['default'].createElement(
       'div',
-      { className: 'nav' },
+      { className: 'homeWrapper' },
       _react2['default'].createElement(
-        'ul',
-        null,
+        'div',
+        { className: 'nav' },
         _react2['default'].createElement(
-          'li',
-          null,
-          ' ',
-          _react2['default'].createElement(
-            'h2',
-            null,
-            'Hello World'
-          )
-        ),
-        _react2['default'].createElement(
-          'li',
-          null,
-          ' ',
-          _react2['default'].createElement(
-            'h2',
-            null,
-            'New Image'
-          )
-        ),
-        _react2['default'].createElement(
-          'li',
+          'ul',
           null,
           _react2['default'].createElement(
-            'h2',
+            'li',
+            { onClick: function () {
+                return _this.returnHome();
+              } },
+            _react2['default'].createElement(
+              'h2',
+              null,
+              'Hello World'
+            )
+          ),
+          _react2['default'].createElement(
+            'li',
+            { onClick: function () {
+                return _this.addPic();
+              } },
+            ' ',
+            _react2['default'].createElement(
+              'h2',
+              null,
+              'New Image'
+            )
+          ),
+          _react2['default'].createElement(
+            'li',
             null,
             _react2['default'].createElement(
-              'a',
-              { href: 'http://jessesoldatfirstsite.bitballoon.com/' },
-              'My World'
+              'h2',
+              null,
+              _react2['default'].createElement(
+                'a',
+                { href: 'http://jessesoldatfirstsite.bitballoon.com/' },
+                'My World'
+              )
             )
           )
         )
+      ),
+      _react2['default'].createElement(
+        'div',
+        { className: 'homePictures' },
+        this.props.getData.map(this.formatData)
       )
     ); //end of return
   } //end of render()

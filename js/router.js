@@ -64,7 +64,12 @@ export default Backbone.Router.extend({
       console.log(data);
 
     this.render(
-      <HomeComponent/>);
+      <HomeComponent
+      getData={data}
+      onHome={() => this.goto('')}
+      onDetails={() => this.goto('details/' + id)}
+      onAdd={() => this.goto('add')}/>
+      );//end of render
    }); //end of fetch
   }, //end of showHome()
 //-----------------------------------

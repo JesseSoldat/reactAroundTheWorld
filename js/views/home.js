@@ -21,16 +21,33 @@ import {
 
 
 export default React.createClass({
+
+  returnHome(){
+    console.log('returnHome');
+  },
+  addPic(){
+    console.log('addPic');
+  },
+  formatData(data) {
+    console.log(data);
+
+  },
   
   render() { 
     return (
+     <div className="homeWrapper"> 
+
       <div className="nav">
       <ul>
-      <li> <h2>Hello World</h2></li>
-      <li> <h2>New Image</h2></li>
+      <li onClick={() => this.returnHome()}><h2>Hello World</h2></li>
+      <li onClick={() => this.addPic()}> <h2>New Image</h2></li>
       <li><h2><a href="http://jessesoldatfirstsite.bitballoon.com/">My World</a></h2></li>
       </ul>
-    </div>
+     </div>
+
+     <div className="homePictures">{this.props.getData.map(this.formatData)}</div>
+
+    </div> 
      
       ) //end of return
     
