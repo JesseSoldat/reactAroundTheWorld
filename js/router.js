@@ -75,17 +75,25 @@ export default Backbone.Router.extend({
 //-----------------------------------
   showDetails(){
     this.render(
-      <DetailsComponent/>);
+      <DetailsComponent
+       onHome={() => this.goto('')}
+       onAdd={() => this.goto('add')}/>
+       );
   }, //end of showDetails()
 //-----------------------------------
   showEdit(){
     this.render(
-      <EditComponent/>);
+      <EditComponent
+      onHome={() => this.goto('')}
+      onAdd={() => this.goto('add')}/>);
   }, //end of showEdit()
 //-----------------------------------
   showAdd(){
     this.render(
-      <AddComponent/>);
+      <AddComponent
+      onHome={() => this.goto('')}
+      onAdd={() => this.goto('add')}/>);
+
   }, //end of showAdd()
 //-----------------------------------
 

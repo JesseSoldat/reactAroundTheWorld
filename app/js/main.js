@@ -226,15 +226,39 @@ exports['default'] = _backbone2['default'].Router.extend({
   }, //end of showHome()
   //-----------------------------------
   showDetails: function showDetails() {
-    this.render(_react2['default'].createElement(_views.DetailsComponent, null));
+    var _this2 = this;
+
+    this.render(_react2['default'].createElement(_views.DetailsComponent, {
+      onHome: function () {
+        return _this2.goto('');
+      },
+      onAdd: function () {
+        return _this2.goto('add');
+      } }));
   }, //end of showDetails()
   //-----------------------------------
   showEdit: function showEdit() {
-    this.render(_react2['default'].createElement(_views.EditComponent, null));
+    var _this3 = this;
+
+    this.render(_react2['default'].createElement(_views.EditComponent, {
+      onHome: function () {
+        return _this3.goto('');
+      },
+      onAdd: function () {
+        return _this3.goto('add');
+      } }));
   }, //end of showEdit()
   //-----------------------------------
   showAdd: function showAdd() {
-    this.render(_react2['default'].createElement(_views.AddComponent, null));
+    var _this4 = this;
+
+    this.render(_react2['default'].createElement(_views.AddComponent, {
+      onHome: function () {
+        return _this4.goto('');
+      },
+      onAdd: function () {
+        return _this4.goto('add');
+      } }));
   } });
 //end export default  
 module.exports = exports['default'];
@@ -267,18 +291,35 @@ var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
+//------------------------------------------
 //Views
 
 var _views = require('../views');
 
+//------------------------------------------
 //Models/Collections
 
 var _resources = require('../resources');
 
+//------------------------------------------
 exports['default'] = _react2['default'].createClass({
   displayName: 'add',
 
+  //------------------------------------------
+
+  returnHome: function returnHome() {
+    // console.log('returnHome');
+    this.props.onHome();
+  },
+  //------------------------------------------
+  addPic: function addPic() {
+    // console.log('addPic');
+    this.props.onAdd();
+  },
+  //------------------------------------------
   render: function render() {
+    var _this = this;
+
     return _react2['default'].createElement(
       'div',
       { className: 'nav' },
@@ -287,8 +328,9 @@ exports['default'] = _react2['default'].createClass({
         null,
         _react2['default'].createElement(
           'li',
-          null,
-          ' ',
+          { onClick: function () {
+              return _this.returnHome();
+            } },
           _react2['default'].createElement(
             'h2',
             null,
@@ -297,7 +339,9 @@ exports['default'] = _react2['default'].createClass({
         ),
         _react2['default'].createElement(
           'li',
-          null,
+          { onClick: function () {
+              return _this.addPic();
+            } },
           ' ',
           _react2['default'].createElement(
             'h2',
@@ -352,18 +396,39 @@ var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
+//------------------------------------------
+
 //Views
 
 var _views = require('../views');
+
+//------------------------------------------
 
 //Models/Collections
 
 var _resources = require('../resources');
 
+//------------------------------------------
+
 exports['default'] = _react2['default'].createClass({
   displayName: 'details',
 
+  //------------------------------------------
+
+  returnHome: function returnHome() {
+    // console.log('returnHome');
+    this.props.onHome();
+  },
+  //------------------------------------------
+
+  addPic: function addPic() {
+    // console.log('addPic');
+    this.props.onAdd();
+  },
+
   render: function render() {
+    var _this = this;
+
     return _react2['default'].createElement(
       'div',
       { className: 'nav' },
@@ -372,8 +437,9 @@ exports['default'] = _react2['default'].createClass({
         null,
         _react2['default'].createElement(
           'li',
-          null,
-          ' ',
+          { onClick: function () {
+              return _this.returnHome();
+            } },
           _react2['default'].createElement(
             'h2',
             null,
@@ -382,7 +448,9 @@ exports['default'] = _react2['default'].createClass({
         ),
         _react2['default'].createElement(
           'li',
-          null,
+          { onClick: function () {
+              return _this.addPic();
+            } },
           ' ',
           _react2['default'].createElement(
             'h2',
@@ -437,18 +505,36 @@ var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
+//------------------------------------------
 //Views
 
 var _views = require('../views');
 
+//------------------------------------------
 //Models/Collections
 
 var _resources = require('../resources');
 
+//------------------------------------------
 exports['default'] = _react2['default'].createClass({
   displayName: 'edit',
 
+  //------------------------------------------
+
+  returnHome: function returnHome() {
+    // console.log('returnHome');
+    this.props.onHome();
+  },
+  //------------------------------------------
+
+  addPic: function addPic() {
+    // console.log('addPic');
+    this.props.onAdd();
+  },
+  //------------------------------------------
   render: function render() {
+    var _this = this;
+
     return _react2['default'].createElement(
       'div',
       { className: 'nav' },
@@ -457,8 +543,9 @@ exports['default'] = _react2['default'].createClass({
         null,
         _react2['default'].createElement(
           'li',
-          null,
-          ' ',
+          { onClick: function () {
+              return _this.returnHome();
+            } },
           _react2['default'].createElement(
             'h2',
             null,
@@ -467,7 +554,9 @@ exports['default'] = _react2['default'].createClass({
         ),
         _react2['default'].createElement(
           'li',
-          null,
+          { onClick: function () {
+              return _this.addPic();
+            } },
           ' ',
           _react2['default'].createElement(
             'h2',
@@ -529,16 +618,25 @@ var _resources = require('../resources');
 exports['default'] = _react2['default'].createClass({
   displayName: 'home',
 
+  //------------------------------------------
+
   returnHome: function returnHome() {
-    console.log('returnHome');
+    // console.log('returnHome');
+    this.props.onHome();
   },
+  //------------------------------------------
+
   addPic: function addPic() {
-    console.log('addPic');
+    // console.log('addPic');
+    this.props.onAdd();
   },
+  //------------------------------------------
+
   picDetails: function picDetails(id) {
-    console.log(id);
+    // console.log(id);
     this.props.onDetails(id);
   },
+  //------------------------------------------
   formatData: function formatData(data) {
     var _this = this;
 
@@ -552,6 +650,7 @@ exports['default'] = _react2['default'].createClass({
       _react2['default'].createElement('img', { className: 'image', src: data.URL })
     ); //end of return
   },
+  //------------------------------------------
 
   render: function render() {
     var _this2 = this;

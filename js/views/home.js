@@ -21,17 +21,25 @@ import {
 
 
 export default React.createClass({
+  //------------------------------------------
 
   returnHome(){
-    console.log('returnHome');
+    // console.log('returnHome');
+    this.props.onHome();
   },
+  //------------------------------------------
+
   addPic(){
-    console.log('addPic');
+    // console.log('addPic');
+    this.props.onAdd();
   },
+  //------------------------------------------
+
   picDetails(id){
-    console.log(id);
+    // console.log(id);
     this.props.onDetails(id);
   },
+  //------------------------------------------
   formatData(data) {
     // console.log(data);
     return (
@@ -40,8 +48,9 @@ export default React.createClass({
         <img className="image" src={data.URL}/>
       </div>
       );//end of return
-
   },
+  //------------------------------------------
+
   
   render() { 
     return (
