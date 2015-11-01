@@ -2111,4 +2111,8 @@ textarea {
   width: 500px;
   float: left; }
 
+button {
+  clear: both;
+  float: left; }
+
 /*# sourceMappingURL=main.css.map */

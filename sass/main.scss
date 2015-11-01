@@ -83,7 +83,7 @@ a {
 }  //.singleContentWrapper 
 .formWrapper {
   margin: 70px 100px;
-  
+
   
 } 
 .labelInputWrapper {
@@ -106,8 +106,6 @@ input {
   vertical-align: middle;
   width: 300px;
 
-
-
 }
 textarea {
   clear: both;
@@ -115,6 +113,8 @@ textarea {
   vertical-align: middle;
   width: 500px;
   float: left;
-  
-
+}
+button {
+  clear: both;
+  float: left;
 }

@@ -33,6 +33,11 @@ export default React.createClass({
     this.props.onAdd();
   }, 
   //------------------------------------------
+  submitPic(){
+    // console.log('submitPic');
+    this.props.onSub();
+  }, 
+  //------------------------------------------
   render() { 
     return (
     <div className="addWrapper"> 
@@ -65,9 +70,15 @@ export default React.createClass({
         </div><br/><br/>
 
         <div className="labelInputWrapper">
+          <label>Picture Url:</label> 
+          <input type="text" className="inputUrl"></input>
+        </div><br/><br/>
+
+        <div className="labelInputWrapper">
           <label>Description:</label>
-          <textarea type="text" className="inputLocation"></textarea>
+          <textarea type="text" className="inputDescription"></textarea>
         </div><br/>
+        <button type="submit" onClick={() => this.submitPic()}>Add New Picture</button>
       </form> 
      </div>
 

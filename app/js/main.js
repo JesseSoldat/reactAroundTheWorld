@@ -278,6 +278,24 @@ exports['default'] = _backbone2['default'].Router.extend({
       },
       onAdd: function () {
         return _this4.goto('add');
+      },
+      onSub: function () {
+        var picName = document.querySelector('.inputName').value;
+        var userName = document.querySelector('.inputUser').value;
+        var location = document.querySelector('.inputLocation').value;
+        var url = document.querySelector('.inputUrl').value;
+        var description = document.querySelector('.inputDescription').value;
+        console.log(picName, userName, location, url, description);
+
+        var uploadParse = new _resources.PictureModel({
+          Name: picName,
+          User: userName,
+          Location: location,
+          URL: url,
+          Description: description
+        }); //new PictureModel
+        // console.log(uploadParse);
+        uploadParse.save();
       } }));
   } });
 //end export default  
@@ -335,6 +353,11 @@ exports['default'] = _react2['default'].createClass({
   addPic: function addPic() {
     // console.log('addPic');
     this.props.onAdd();
+  },
+  //------------------------------------------
+  submitPic: function submitPic() {
+    // console.log('submitPic');
+    this.props.onSub();
   },
   //------------------------------------------
   render: function render() {
@@ -440,11 +463,30 @@ exports['default'] = _react2['default'].createClass({
             _react2['default'].createElement(
               'label',
               null,
+              'Picture Url:'
+            ),
+            _react2['default'].createElement('input', { type: 'text', className: 'inputUrl' })
+          ),
+          _react2['default'].createElement('br', null),
+          _react2['default'].createElement('br', null),
+          _react2['default'].createElement(
+            'div',
+            { className: 'labelInputWrapper' },
+            _react2['default'].createElement(
+              'label',
+              null,
               'Description:'
             ),
-            _react2['default'].createElement('textarea', { type: 'text', className: 'inputLocation' })
+            _react2['default'].createElement('textarea', { type: 'text', className: 'inputDescription' })
           ),
-          _react2['default'].createElement('br', null)
+          _react2['default'].createElement('br', null),
+          _react2['default'].createElement(
+            'button',
+            { type: 'submit', onClick: function () {
+                return _this.submitPic();
+              } },
+            'Add New Picture'
+          )
         )
       )
     ); //end of return
@@ -759,11 +801,28 @@ exports['default'] = _react2['default'].createClass({
             _react2['default'].createElement(
               'label',
               null,
+              'Picture Url:'
+            ),
+            _react2['default'].createElement('input', { type: 'text', className: 'inputUrl' })
+          ),
+          _react2['default'].createElement('br', null),
+          _react2['default'].createElement('br', null),
+          _react2['default'].createElement(
+            'div',
+            { className: 'labelInputWrapper' },
+            _react2['default'].createElement(
+              'label',
+              null,
               'Description:'
             ),
-            _react2['default'].createElement('textarea', { type: 'text', className: 'inputLocation' })
+            _react2['default'].createElement('textarea', { type: 'text', className: 'inputDescription' })
           ),
-          _react2['default'].createElement('br', null)
+          _react2['default'].createElement('br', null),
+          _react2['default'].createElement(
+            'button',
+            { type: 'submit' },
+            'Edit Picture'
+          )
         )
       )
     ); //end of return
