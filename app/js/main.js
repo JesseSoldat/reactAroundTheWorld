@@ -399,35 +399,51 @@ exports['default'] = _react2['default'].createClass({
           'form',
           { className: 'form' },
           _react2['default'].createElement(
-            'label',
-            null,
-            'Picture Name:       '
+            'div',
+            { className: 'labelInputWrapper' },
+            _react2['default'].createElement(
+              'label',
+              null,
+              'Picture Name:'
+            ),
+            _react2['default'].createElement('input', { type: 'text', className: 'inputName' })
           ),
-          _react2['default'].createElement('input', { type: 'text', className: 'inputName' }),
           _react2['default'].createElement('br', null),
           _react2['default'].createElement('br', null),
           _react2['default'].createElement(
-            'label',
-            null,
-            'User Name:          '
+            'div',
+            { className: 'labelInputWrapper' },
+            _react2['default'].createElement(
+              'label',
+              { className: 'labelUser' },
+              'User Name:'
+            ),
+            _react2['default'].createElement('input', { type: 'text', className: 'inputUser' })
           ),
-          _react2['default'].createElement('input', { type: 'text', className: 'inputUser' }),
           _react2['default'].createElement('br', null),
           _react2['default'].createElement('br', null),
           _react2['default'].createElement(
-            'label',
-            null,
-            'Picture Location:   '
+            'div',
+            { className: 'labelInputWrapper' },
+            _react2['default'].createElement(
+              'label',
+              null,
+              'Picture Location:'
+            ),
+            _react2['default'].createElement('input', { type: 'text', className: 'inputLocation' })
           ),
-          _react2['default'].createElement('input', { type: 'text', className: 'inputLocation' }),
           _react2['default'].createElement('br', null),
           _react2['default'].createElement('br', null),
           _react2['default'].createElement(
-            'label',
-            null,
-            'Description:        '
+            'div',
+            { className: 'labelInputWrapper' },
+            _react2['default'].createElement(
+              'label',
+              null,
+              'Description:'
+            ),
+            _react2['default'].createElement('textarea', { type: 'text', className: 'inputLocation' })
           ),
-          _react2['default'].createElement('textarea', { type: 'text', className: 'inputLocation' }),
           _react2['default'].createElement('br', null)
         )
       )
@@ -645,45 +661,109 @@ exports['default'] = _react2['default'].createClass({
 
     return _react2['default'].createElement(
       'div',
-      { className: 'nav' },
+      { className: 'addWrapper' },
       _react2['default'].createElement(
-        'ul',
-        null,
+        'div',
+        { className: 'nav' },
         _react2['default'].createElement(
-          'li',
-          { onClick: function () {
-              return _this.returnHome();
-            } },
-          _react2['default'].createElement(
-            'h2',
-            null,
-            'Hello World'
-          )
-        ),
-        _react2['default'].createElement(
-          'li',
-          { onClick: function () {
-              return _this.addPic();
-            } },
-          ' ',
-          _react2['default'].createElement(
-            'h2',
-            null,
-            'New Image'
-          )
-        ),
-        _react2['default'].createElement(
-          'li',
+          'ul',
           null,
           _react2['default'].createElement(
-            'h2',
+            'li',
+            { onClick: function () {
+                return _this.returnHome();
+              } },
+            _react2['default'].createElement(
+              'h2',
+              null,
+              'Hello World'
+            )
+          ),
+          _react2['default'].createElement(
+            'li',
+            { onClick: function () {
+                return _this.addPic();
+              } },
+            ' ',
+            _react2['default'].createElement(
+              'h2',
+              null,
+              'New Image'
+            )
+          ),
+          _react2['default'].createElement(
+            'li',
             null,
             _react2['default'].createElement(
-              'a',
-              { href: 'http://jessesoldatfirstsite.bitballoon.com/' },
-              'My World'
+              'h2',
+              null,
+              _react2['default'].createElement(
+                'a',
+                { href: 'http://jessesoldatfirstsite.bitballoon.com/' },
+                'My World'
+              )
             )
           )
+        )
+      ),
+      _react2['default'].createElement(
+        'div',
+        { className: 'formWrapper' },
+        _react2['default'].createElement(
+          'h1',
+          null,
+          'Edit a Picture'
+        ),
+        _react2['default'].createElement(
+          'form',
+          { className: 'form' },
+          _react2['default'].createElement(
+            'div',
+            { className: 'labelInputWrapper' },
+            _react2['default'].createElement(
+              'label',
+              null,
+              'Picture Name:'
+            ),
+            _react2['default'].createElement('input', { type: 'text', className: 'inputName' })
+          ),
+          _react2['default'].createElement('br', null),
+          _react2['default'].createElement('br', null),
+          _react2['default'].createElement(
+            'div',
+            { className: 'labelInputWrapper' },
+            _react2['default'].createElement(
+              'label',
+              { className: 'labelUser' },
+              'User Name:'
+            ),
+            _react2['default'].createElement('input', { type: 'text', className: 'inputUser' })
+          ),
+          _react2['default'].createElement('br', null),
+          _react2['default'].createElement('br', null),
+          _react2['default'].createElement(
+            'div',
+            { className: 'labelInputWrapper' },
+            _react2['default'].createElement(
+              'label',
+              null,
+              'Picture Location:'
+            ),
+            _react2['default'].createElement('input', { type: 'text', className: 'inputLocation' })
+          ),
+          _react2['default'].createElement('br', null),
+          _react2['default'].createElement('br', null),
+          _react2['default'].createElement(
+            'div',
+            { className: 'labelInputWrapper' },
+            _react2['default'].createElement(
+              'label',
+              null,
+              'Description:'
+            ),
+            _react2['default'].createElement('textarea', { type: 'text', className: 'inputLocation' })
+          ),
+          _react2['default'].createElement('br', null)
         )
       )
     ); //end of return

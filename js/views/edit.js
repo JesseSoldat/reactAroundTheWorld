@@ -37,14 +37,43 @@ export default React.createClass({
   //------------------------------------------
   render() { 
     return (
+      <div className="addWrapper"> 
+
       <div className="nav">
       <ul>
       <li onClick={() => this.returnHome()}><h2>Hello World</h2></li>
       <li onClick={() => this.addPic()}> <h2>New Image</h2></li>
       <li><h2><a href="http://jessesoldatfirstsite.bitballoon.com/">My World</a></h2></li>
       </ul>
-    </div>
-     
+     </div>
+
+     <div className="formWrapper">
+      <h1>Edit a Picture</h1>
+      <form className="form">
+
+        <div className="labelInputWrapper">
+          <label>Picture Name:</label> 
+          <input type="text" className="inputName"></input>
+        </div><br/><br/>
+          
+        <div className="labelInputWrapper">
+          <label className="labelUser">User Name:</label> 
+          <input type="text" className="inputUser"></input>
+        </div><br/><br/>
+        
+        <div className="labelInputWrapper">
+          <label>Picture Location:</label> 
+          <input type="text" className="inputLocation"></input>
+        </div><br/><br/>
+
+        <div className="labelInputWrapper">
+          <label>Description:</label>
+          <textarea type="text" className="inputLocation"></textarea>
+        </div><br/>
+      </form> 
+     </div>
+
+   </div> 
       ) //end of return
     
   } //end of render()

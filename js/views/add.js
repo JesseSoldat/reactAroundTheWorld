@@ -48,14 +48,26 @@ export default React.createClass({
      <div className="formWrapper">
       <h1>Add a Picture</h1>
       <form className="form">
-        <label>Picture Name:       </label> 
-        <input type="text" className="inputName"></input><br/><br/>
-        <label>User Name:          </label> 
-        <input type="text" className="inputUser"></input><br/><br/>
-        <label>Picture Location:   </label> 
-        <input type="text" className="inputLocation"></input><br/><br/>
-        <label>Description:        </label>
-        <textarea type="text" className="inputLocation"></textarea><br/>
+
+        <div className="labelInputWrapper">
+          <label>Picture Name:</label> 
+          <input type="text" className="inputName"></input>
+        </div><br/><br/>
+          
+        <div className="labelInputWrapper">
+          <label className="labelUser">User Name:</label> 
+          <input type="text" className="inputUser"></input>
+        </div><br/><br/>
+        
+        <div className="labelInputWrapper">
+          <label>Picture Location:</label> 
+          <input type="text" className="inputLocation"></input>
+        </div><br/><br/>
+
+        <div className="labelInputWrapper">
+          <label>Description:</label>
+          <textarea type="text" className="inputLocation"></textarea>
+        </div><br/>
       </form> 
      </div>
 
