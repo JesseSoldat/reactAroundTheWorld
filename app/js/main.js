@@ -172,7 +172,7 @@ exports['default'] = _backbone2['default'].Router.extend({
   routes: {
     "": "showHome",
     "details/:id": "showDetails",
-    "edit": "showEdit",
+    "edit/:id": "showEdit",
     "add": "showAdd"
 
   }, //end of routes
@@ -239,6 +239,9 @@ exports['default'] = _backbone2['default'].Router.extend({
         onAdd: function () {
           return _this2.goto('add');
         },
+        OnEdit: function () {
+          return _this2.goto('edit/' + id);
+        },
         image: imageClicked.toJSON() }));
     } //if
     else {
@@ -252,20 +255,44 @@ exports['default'] = _backbone2['default'].Router.extend({
             onAdd: function () {
               return _this2.goto('add');
             },
+            OnEdit: function () {
+              return _this2.goto('edit/' + id);
+            },
             image: imageClicked.toJSON() }));
         }); //fetch
       } //else
   }, //showDetails()
   //-----------------------------------
-  showEdit: function showEdit() {
+  showEdit: function showEdit(id) {
     var _this3 = this;
 
+    var imageClicked = this.collection;
+
     this.render(_react2['default'].createElement(_views.EditComponent, {
+      image: imageClicked.toJSON(),
       onHome: function () {
         return _this3.goto('');
       },
       onAdd: function () {
         return _this3.goto('add');
+      },
+      onSub2: function () {
+        var picName = document.querySelector('.inputName2').value;
+        var userName = document.querySelector('.inputUser2').value;
+        var location = document.querySelector('.inputLocation2').value;
+        var description = document.querySelector('.inputDescription2').value;
+        // console.log(picName, userName, location, description);
+
+        var editParse = new _resources.PictureModel({
+          objectId: id,
+          Name: picName,
+          User: userName,
+          Location: location,
+          Description: description
+        }); //new PictureModel
+        console.log(editParse);
+        editParse.save();
+        _this3.goto('');
       } }));
   }, //end of showEdit()
   //-----------------------------------
@@ -285,7 +312,7 @@ exports['default'] = _backbone2['default'].Router.extend({
         var location = document.querySelector('.inputLocation').value;
         var url = document.querySelector('.inputUrl').value;
         var description = document.querySelector('.inputDescription').value;
-        console.log(picName, userName, location, url, description);
+        // console.log(picName, userName, location, url, description);
 
         var uploadParse = new _resources.PictureModel({
           Name: picName,
@@ -296,6 +323,7 @@ exports['default'] = _backbone2['default'].Router.extend({
         }); //new PictureModel
         // console.log(uploadParse);
         uploadParse.save();
+        _this4.goto('');
       } }));
   } });
 //end export default  
@@ -482,7 +510,7 @@ exports['default'] = _react2['default'].createClass({
           _react2['default'].createElement('br', null),
           _react2['default'].createElement(
             'button',
-            { type: 'submit', onClick: function () {
+            { onClick: function () {
                 return _this.submitPic();
               } },
             'Add New Picture'
@@ -551,6 +579,13 @@ exports['default'] = _react2['default'].createClass({
     // console.log('addPic');
     this.props.onAdd();
   },
+  //------------------------------------------
+
+  editPic: function editPic(id) {
+    console.log('editPic');
+    this.props.OnEdit('edit/' + id);
+  },
+  //------------------------------------------
 
   render: function render() {
     var _this = this;
@@ -635,6 +670,13 @@ exports['default'] = _react2['default'].createClass({
             'p',
             null,
             this.props.image.Description
+          ),
+          _react2['default'].createElement(
+            'button',
+            { className: 'editButton', onClick: function () {
+                return _this.editPic(_this.props.image.objectId);
+              } },
+            'Edit Info'
           )
         )
       )
@@ -698,7 +740,13 @@ exports['default'] = _react2['default'].createClass({
     this.props.onAdd();
   },
   //------------------------------------------
-  render: function render() {
+  editPic: function editPic(id) {
+    console.log('editPic info');
+    this.props.onSub2(id);
+  },
+  //------------------------------------------
+
+  render: function render(id) {
     var _this = this;
 
     return _react2['default'].createElement(
@@ -754,7 +802,7 @@ exports['default'] = _react2['default'].createClass({
         _react2['default'].createElement(
           'h1',
           null,
-          'Edit a Picture'
+          'Edit the Picture'
         ),
         _react2['default'].createElement(
           'form',
@@ -767,7 +815,7 @@ exports['default'] = _react2['default'].createClass({
               null,
               'Picture Name:'
             ),
-            _react2['default'].createElement('input', { type: 'text', className: 'inputName' })
+            _react2['default'].createElement('input', { type: 'text', className: 'inputName2' })
           ),
           _react2['default'].createElement('br', null),
           _react2['default'].createElement('br', null),
@@ -779,7 +827,7 @@ exports['default'] = _react2['default'].createClass({
               { className: 'labelUser' },
               'User Name:'
             ),
-            _react2['default'].createElement('input', { type: 'text', className: 'inputUser' })
+            _react2['default'].createElement('input', { type: 'text', className: 'inputUser2' })
           ),
           _react2['default'].createElement('br', null),
           _react2['default'].createElement('br', null),
@@ -791,19 +839,7 @@ exports['default'] = _react2['default'].createClass({
               null,
               'Picture Location:'
             ),
-            _react2['default'].createElement('input', { type: 'text', className: 'inputLocation' })
-          ),
-          _react2['default'].createElement('br', null),
-          _react2['default'].createElement('br', null),
-          _react2['default'].createElement(
-            'div',
-            { className: 'labelInputWrapper' },
-            _react2['default'].createElement(
-              'label',
-              null,
-              'Picture Url:'
-            ),
-            _react2['default'].createElement('input', { type: 'text', className: 'inputUrl' })
+            _react2['default'].createElement('input', { type: 'text', className: 'inputLocation2' })
           ),
           _react2['default'].createElement('br', null),
           _react2['default'].createElement('br', null),
@@ -815,12 +851,14 @@ exports['default'] = _react2['default'].createClass({
               null,
               'Description:'
             ),
-            _react2['default'].createElement('textarea', { type: 'text', className: 'inputDescription' })
+            _react2['default'].createElement('textarea', { type: 'text', className: 'inputDescription2' })
           ),
           _react2['default'].createElement('br', null),
           _react2['default'].createElement(
             'button',
-            { type: 'submit' },
+            { onClick: function () {
+                return _this.editPic(id);
+              } },
             'Edit Picture'
           )
         )

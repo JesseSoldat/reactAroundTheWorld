@@ -37,6 +37,13 @@ export default React.createClass({
     // console.log('addPic');
     this.props.onAdd();
   },
+  //------------------------------------------
+
+  editPic(id){
+    console.log('editPic');
+    this.props.OnEdit('edit/' + id)
+  },
+  //------------------------------------------
   
   render() { 
     return (
@@ -59,6 +66,9 @@ export default React.createClass({
           <h3>User: {this.props.image.User}</h3>
           <h3>@ {this.props.image.Location}</h3>
           <p>{this.props.image.Description}</p>
+
+        <button className="editButton" onClick={() => this.editPic(this.props.image.objectId)}>Edit Info</button>
+
         </div>
 
       </div>   

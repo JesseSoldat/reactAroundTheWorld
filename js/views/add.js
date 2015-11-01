@@ -78,7 +78,7 @@ export default React.createClass({
           <label>Description:</label>
           <textarea type="text" className="inputDescription"></textarea>
         </div><br/>
-        <button type="submit" onClick={() => this.submitPic()}>Add New Picture</button>
+        <button  onClick={() => this.submitPic()}>Add New Picture</button>
       </form> 
      </div>
 

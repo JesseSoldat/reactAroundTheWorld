@@ -25,7 +25,7 @@ export default Backbone.Router.extend({
   routes: {
     ""            : "showHome",
     "details/:id" : "showDetails",
-    "edit"        : "showEdit",
+    "edit/:id"        : "showEdit",
     "add"         : "showAdd",
     
   }, //end of routes
@@ -82,6 +82,7 @@ export default Backbone.Router.extend({
       <DetailsComponent
        onHome={() => this.goto('')}
        onAdd={() => this.goto('add')}
+       OnEdit={() => this.goto('edit/' + id)}
        image={imageClicked.toJSON()}/>
        );
     
@@ -93,6 +94,7 @@ export default Backbone.Router.extend({
       this.render(<DetailsComponent
        onHome={() => this.goto('')}
        onAdd={() => this.goto('add')}
+       OnEdit={() => this.goto('edit/' + id)}
        image={imageClicked.toJSON()}/>
        );
 
@@ -100,11 +102,36 @@ export default Backbone.Router.extend({
     }//else
   }, //showDetails()
 //-----------------------------------
-  showEdit(){
+  showEdit(id){
+    let imageClicked = this.collection;
+
     this.render(
       <EditComponent
+      image={imageClicked.toJSON()}
       onHome={() => this.goto('')}
-      onAdd={() => this.goto('add')}/>);
+      onAdd={() => this.goto('add')}
+      onSub2={() => {
+        let picName = document.querySelector('.inputName2').value;
+        let userName = document.querySelector('.inputUser2').value;
+        let location = document.querySelector('.inputLocation2').value;
+        let description = document.querySelector('.inputDescription2').value;
+        // console.log(picName, userName, location, description);
+
+        let editParse = new PictureModel ({
+          objectId: id,
+          Name: picName,
+          User: userName,
+          Location: location,
+          Description: description,
+        }); //new PictureModel
+        console.log(editParse);
+        editParse.save();
+        this.goto('');
+
+      }
+    }/>
+  );
+
   }, //end of showEdit()
 //-----------------------------------
   showAdd(){
@@ -129,6 +156,7 @@ export default Backbone.Router.extend({
         }); //new PictureModel
         // console.log(uploadParse);
         uploadParse.save();
+        this.goto('');
 
       }
     }/>

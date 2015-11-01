@@ -35,7 +35,13 @@ export default React.createClass({
     this.props.onAdd();
   },
   //------------------------------------------
-  render() { 
+  editPic(id){
+    console.log('editPic info');
+    this.props.onSub2(id);
+  },
+  //------------------------------------------
+
+  render(id) { 
     return (
       <div className="addWrapper"> 
 
@@ -48,34 +54,29 @@ export default React.createClass({
      </div>
 
      <div className="formWrapper">
-      <h1>Edit a Picture</h1>
+      <h1>Edit the Picture</h1>
       <form className="form">
 
         <div className="labelInputWrapper">
           <label>Picture Name:</label> 
-          <input type="text" className="inputName"></input>
+          <input type="text" className="inputName2"></input>
         </div><br/><br/>
           
         <div className="labelInputWrapper">
           <label className="labelUser">User Name:</label> 
-          <input type="text" className="inputUser"></input>
+          <input type="text" className="inputUser2"></input>
         </div><br/><br/>
         
         <div className="labelInputWrapper">
           <label>Picture Location:</label> 
-          <input type="text" className="inputLocation"></input>
-        </div><br/><br/>
-
-        <div className="labelInputWrapper">
-          <label>Picture Url:</label> 
-          <input type="text" className="inputUrl"></input>
+          <input type="text" className="inputLocation2"></input>
         </div><br/><br/>
 
         <div className="labelInputWrapper">
           <label>Description:</label>
-          <textarea type="text" className="inputDescription"></textarea>
+          <textarea type="text" className="inputDescription2"></textarea>
         </div><br/>
-         <button type="submit">Edit Picture</button>
+         <button onClick={() => this.editPic(id)}>Edit Picture</button>
       </form> 
      </div>
 
