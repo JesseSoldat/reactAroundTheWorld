@@ -67,7 +67,7 @@ export default Backbone.Router.extend({
       <HomeComponent
       getData={data}
       onHome={() => this.goto('')}
-      onDetails={() => this.goto('details/' + id)}
+      onDetails={(id) => this.goto('details/' + id)}
       onAdd={() => this.goto('add')}/>
       );//end of render
    }); //end of fetch

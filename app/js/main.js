@@ -216,7 +216,7 @@ exports['default'] = _backbone2['default'].Router.extend({
         onHome: function () {
           return _this.goto('');
         },
-        onDetails: function () {
+        onDetails: function (id) {
           return _this.goto('details/' + id);
         },
         onAdd: function () {
@@ -535,17 +535,26 @@ exports['default'] = _react2['default'].createClass({
   addPic: function addPic() {
     console.log('addPic');
   },
+  picDetails: function picDetails(id) {
+    console.log(id);
+    this.props.onDetails(id);
+  },
   formatData: function formatData(data) {
+    var _this = this;
+
     // console.log(data);
     return _react2['default'].createElement(
       'div',
-      { className: 'imgWrapper', key: data.objectId },
+      { className: 'imgWrapper', key: data.objectId,
+        onClick: function () {
+          return _this.picDetails(data.objectId);
+        } },
       _react2['default'].createElement('img', { className: 'image', src: data.URL })
     ); //end of return
   },
 
   render: function render() {
-    var _this = this;
+    var _this2 = this;
 
     return _react2['default'].createElement(
       'div',
@@ -559,7 +568,7 @@ exports['default'] = _react2['default'].createClass({
           _react2['default'].createElement(
             'li',
             { onClick: function () {
-                return _this.returnHome();
+                return _this2.returnHome();
               } },
             _react2['default'].createElement(
               'h2',
@@ -570,7 +579,7 @@ exports['default'] = _react2['default'].createClass({
           _react2['default'].createElement(
             'li',
             { onClick: function () {
-                return _this.addPic();
+                return _this2.addPic();
               } },
             ' ',
             _react2['default'].createElement(

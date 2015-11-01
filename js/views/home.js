@@ -28,10 +28,15 @@ export default React.createClass({
   addPic(){
     console.log('addPic');
   },
+  picDetails(id){
+    console.log(id);
+    this.props.onDetails(id);
+  },
   formatData(data) {
     // console.log(data);
     return (
-      <div className="imgWrapper" key={data.objectId}>
+      <div className="imgWrapper" key={data.objectId}
+        onClick={() => this.picDetails(data.objectId)}>
         <img className="image" src={data.URL}/>
       </div>
       );//end of return
