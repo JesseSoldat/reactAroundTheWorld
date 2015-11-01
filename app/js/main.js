@@ -209,7 +209,7 @@ exports['default'] = _backbone2['default'].Router.extend({
 
     this.collection.fetch().then(function () {
       var data = _this.collection.toJSON();
-      console.log(data);
+      // console.log(data);
 
       _this.render(_react2['default'].createElement(_views.HomeComponent, {
         getData: data,
@@ -231,6 +231,7 @@ exports['default'] = _backbone2['default'].Router.extend({
     var imageClicked = this.collection.get(id);
 
     if (imageClicked) {
+      console.log('if');
       this.render(_react2['default'].createElement(_views.DetailsComponent, {
         onHome: function () {
           return _this2.goto('');
@@ -241,6 +242,7 @@ exports['default'] = _backbone2['default'].Router.extend({
         image: imageClicked.toJSON() }));
     } //if
     else {
+        console.log('else');
         imageClicked = this.collection.add({ objectId: id });
         imageClicked.fetch().then(function () {
           _this2.render(_react2['default'].createElement(_views.DetailsComponent, {
@@ -340,45 +342,93 @@ exports['default'] = _react2['default'].createClass({
 
     return _react2['default'].createElement(
       'div',
-      { className: 'nav' },
+      { className: 'addWrapper' },
       _react2['default'].createElement(
-        'ul',
-        null,
+        'div',
+        { className: 'nav' },
         _react2['default'].createElement(
-          'li',
-          { onClick: function () {
-              return _this.returnHome();
-            } },
-          _react2['default'].createElement(
-            'h2',
-            null,
-            'Hello World'
-          )
-        ),
-        _react2['default'].createElement(
-          'li',
-          { onClick: function () {
-              return _this.addPic();
-            } },
-          ' ',
-          _react2['default'].createElement(
-            'h2',
-            null,
-            'New Image'
-          )
-        ),
-        _react2['default'].createElement(
-          'li',
+          'ul',
           null,
           _react2['default'].createElement(
-            'h2',
+            'li',
+            { onClick: function () {
+                return _this.returnHome();
+              } },
+            _react2['default'].createElement(
+              'h2',
+              null,
+              'Hello World'
+            )
+          ),
+          _react2['default'].createElement(
+            'li',
+            { onClick: function () {
+                return _this.addPic();
+              } },
+            ' ',
+            _react2['default'].createElement(
+              'h2',
+              null,
+              'New Image'
+            )
+          ),
+          _react2['default'].createElement(
+            'li',
             null,
             _react2['default'].createElement(
-              'a',
-              { href: 'http://jessesoldatfirstsite.bitballoon.com/' },
-              'My World'
+              'h2',
+              null,
+              _react2['default'].createElement(
+                'a',
+                { href: 'http://jessesoldatfirstsite.bitballoon.com/' },
+                'My World'
+              )
             )
           )
+        )
+      ),
+      _react2['default'].createElement(
+        'div',
+        { className: 'formWrapper' },
+        _react2['default'].createElement(
+          'h1',
+          null,
+          'Add a Picture'
+        ),
+        _react2['default'].createElement(
+          'form',
+          { className: 'form' },
+          _react2['default'].createElement(
+            'label',
+            null,
+            'Picture Name:       '
+          ),
+          _react2['default'].createElement('input', { type: 'text', className: 'inputName' }),
+          _react2['default'].createElement('br', null),
+          _react2['default'].createElement('br', null),
+          _react2['default'].createElement(
+            'label',
+            null,
+            'User Name:          '
+          ),
+          _react2['default'].createElement('input', { type: 'text', className: 'inputUser' }),
+          _react2['default'].createElement('br', null),
+          _react2['default'].createElement('br', null),
+          _react2['default'].createElement(
+            'label',
+            null,
+            'Picture Location:   '
+          ),
+          _react2['default'].createElement('input', { type: 'text', className: 'inputLocation' }),
+          _react2['default'].createElement('br', null),
+          _react2['default'].createElement('br', null),
+          _react2['default'].createElement(
+            'label',
+            null,
+            'Description:        '
+          ),
+          _react2['default'].createElement('textarea', { type: 'text', className: 'inputLocation' }),
+          _react2['default'].createElement('br', null)
         )
       )
     ); //end of return

@@ -61,7 +61,7 @@ export default Backbone.Router.extend({
 
     this.collection.fetch().then(() =>{
       let data = this.collection.toJSON();
-      console.log(data);
+      // console.log(data);
 
     this.render(
       <HomeComponent
@@ -77,6 +77,7 @@ export default Backbone.Router.extend({
     let imageClicked = this.collection.get(id);
     
    if (imageClicked) {
+    console.log('if');
     this.render(
       <DetailsComponent
        onHome={() => this.goto('')}
@@ -86,6 +87,7 @@ export default Backbone.Router.extend({
     
    }//if
    else { 
+    console.log('else');
     imageClicked = this.collection.add({objectId: id});
     imageClicked.fetch().then(() => {
       this.render(<DetailsComponent
