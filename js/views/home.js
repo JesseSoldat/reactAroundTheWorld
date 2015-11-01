@@ -29,7 +29,12 @@ export default React.createClass({
     console.log('addPic');
   },
   formatData(data) {
-    console.log(data);
+    // console.log(data);
+    return (
+      <div className="imgWrapper" key={data.objectId}>
+        <img className="image" src={data.URL}/>
+      </div>
+      );//end of return
 
   },
   
@@ -44,6 +49,10 @@ export default React.createClass({
       <li><h2><a href="http://jessesoldatfirstsite.bitballoon.com/">My World</a></h2></li>
       </ul>
      </div>
+
+     <div className="banner">
+        <img src="http://mywanderfulworld.com/wp-content/uploads/2015/04/GLOBE.jpg"/>
+      </div>
 
      <div className="homePictures">{this.props.getData.map(this.formatData)}</div>
 

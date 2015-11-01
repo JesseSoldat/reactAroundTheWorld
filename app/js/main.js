@@ -536,7 +536,12 @@ exports['default'] = _react2['default'].createClass({
     console.log('addPic');
   },
   formatData: function formatData(data) {
-    console.log(data);
+    // console.log(data);
+    return _react2['default'].createElement(
+      'div',
+      { className: 'imgWrapper', key: data.objectId },
+      _react2['default'].createElement('img', { className: 'image', src: data.URL })
+    ); //end of return
   },
 
   render: function render() {
@@ -588,6 +593,11 @@ exports['default'] = _react2['default'].createClass({
             )
           )
         )
+      ),
+      _react2['default'].createElement(
+        'div',
+        { className: 'banner' },
+        _react2['default'].createElement('img', { src: 'http://mywanderfulworld.com/wp-content/uploads/2015/04/GLOBE.jpg' })
       ),
       _react2['default'].createElement(
         'div',
